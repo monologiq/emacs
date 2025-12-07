@@ -1,3 +1,4 @@
+
 (defvar elpaca-installer-version 0.11)
 (defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
 (defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
@@ -136,7 +137,7 @@
   (setq auto-dark-themes '((modus-vivendi) (modus-operandi))))
 
 
-(set-frame-font "SF Mono 10")
+(set-frame-font "SF Mono 11")
 
 (with-eval-after-load 'auto-dark
   (auto-dark-mode))
