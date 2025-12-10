@@ -8,7 +8,8 @@
   :tag "Core directories"
   :group 'environment)
 
-(defcustom core-directory-fallback nil
+(defcustom core-directory-base
+  (expand-file-name ".etc" user-emacs-directory)
   "Path to the fallback directory is XDG envvars are not set."
   :type 'directory
   :group 'core-directories)
@@ -42,40 +43,15 @@
 (defvar xdg-state-home (getenv "XDG_STATE_HOME")
   "Path to XDG state directory.")
 
-(setq core-directory-fallback
-      (expand-file-name ".etc" user-emacs-directory))
-
-(setq core-directory-cache
-      (expand-file-name
-       "emacs"
-       (if xdg-cache-home
-	   xdg-cache-home
-	 core-directory-fallback)))
-
-(setq core-directory-data
-      (expand-file-name
-       "emacs"
-       (if xdg-data-home
-           xdg-data-home
-         core-directory-fallback)))
-
-(setq core-directory-state
-      (expand-file-name
-       "emacs"
-       (if xdg-state-home
-           xdg-state-home
-         core-directory-fallback)))
-
-(setq core-directory-backup
-      (expand-file-name "backups" core-directory-cache))
-
-(dolist (dir '(core-directory-cache
-	       core-directory-data
-	       core-directory-state
-	       core-directory-backup))
-  (unless (file-exists-p (symbol-value dir))
-    (make-directory (symbol-value dir) t)))
-
+(dolist (dir '((core-directory-cache  "cache")
+               (core-directory-data   "data")
+               (core-directory-config "config")
+               (core-directory-backup "backup")))
+  (pcase-let ((`(,variable ,dirname) dir))
+    (let ((path (expand-file-name dirname core-directory-base)))
+      (unless (file-exists-p path)
+        (make-directory path t))
+      (set variable path))))
+		     
 (provide 'core-env)
-
 ;;; core-env.el ends here

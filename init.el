@@ -105,7 +105,7 @@
 ;; (require 'auto-dark)
 ;; (setq auto-dark-themes '((modus-vivendi) (modus-operandi)))
 
-(load-theme 'modus-vivendi)
+(load-theme 'modus-operandi)
 
 ;; Set SF Pro as the default font for Emacs GUI
 (set-face-attribute 'default nil
@@ -114,7 +114,7 @@
 
 ;; Set Iosevka Cavalier for programming modes
 (set-face-attribute 'fixed-pitch nil
-                    :family "Iosevka Cavalier"
+                    :family "Pragmata Pro Mono Liga"
                     :height 120)
 
 ;; Apply fixed-pitch (Iosevka Cavalier) to prog-mode

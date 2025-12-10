@@ -37,6 +37,7 @@
               emacsWithPkgs = (pkgs.emacsPackagesFor emacs).emacsWithPackages (
                 epkgs: with epkgs; [
                   ellama
+		  no-littering
                   markdown-mode
                   meow-tree-sitter
                   svg-lib
