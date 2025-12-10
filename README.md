@@ -1,1 +1,1 @@
-# Neovim configuration
+# Emacs configuration
